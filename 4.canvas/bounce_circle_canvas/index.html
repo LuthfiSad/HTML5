@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <style type="text/css">
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas></canvas>
+    <script type="text/javascript">
+      var canvas = document.querySelector("canvas");
+      var width = innerWidth;
+      var height = innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      var c = canvas.getContext("2d");
+      var rad = 100; //besar ukuran circle
+      // random muncul circle sumbu x dan y
+      var x = Math.random() * (width - rad * 2) + rad;
+      var y = Math.random() * (height - rad * 2) + rad;
+      var dx = 5;
+      var dy = 5;
+      function animate() {
+        requestAnimationFrame(animate);
+        c.clearRect(0, 0, width, height);
+        c.beginPath();
+        c.arc(x, y, rad, 0, Math.PI * 2);
+        c.fillStyle = "Black";
+        c.strokeStyle = "red";
+        c.lineWidth = 5;
+        c.fill();
+        c.stroke();
+        if (x > width - rad || x < 0 + rad) {
+          dx = -dx;
+        }
+        if (y > height - rad || y < 0 + rad) {
+          dy = -dy;
+        }
+        x += dx;
+        y += dy;
+      }
+      animate();
+    </script>
+  </body>
+</html>
